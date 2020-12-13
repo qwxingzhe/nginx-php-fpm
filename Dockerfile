@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
 
-#COPY ./sources.list /etc/apt/sources.list
+ADD ./sources.list /etc/apt/sources.list
 COPY ./depend_file /var/www/depend_file
 
 
