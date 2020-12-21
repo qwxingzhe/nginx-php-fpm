@@ -4,44 +4,21 @@ cd /var/www/depend_file
 
 apt-get update
 
-apt-get --purge remove libzip
+tar xvfJ wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+sudo mv ./wkhtmltoimage /usr/bin/wkhtmltoimage
+cd wkhtmltox/bin
+cp wkhtmlto* /usr/bin/
+sudo chmod +x /usr/bin/wkhtmltoimage
+sudo chmod +x /usr/bin/wkhtmltopdf
 
-#apt-get install -y zlib-devel
-apt-get install zlib1g
-apt-get install zlib1g.dev 
+sudo apt-get install libXext*
+sudo apt-get install libfontconfig*
+apt-get install libXrender*
+sudo apt install libssl1.0-dev
 
-
-
-tar -zxvf libzip-1.2.0.tar.gz
-cd libzip-1.2.0
-./configure
-make && make install
-
-
-apt-get install -y \
-        libfreetype6-dev \
-        libjpeg-dev \
-        libpng-dev \
-        libmcrypt-dev
-
-docker-php-ext-install zip
-docker-php-ext-install -j$(nproc) pdo_mysql
-# mcrypt
-
-docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-docker-php-ext-install -j$(nproc) gd
-usermod -u 1000 www-data
-pecl install -o -f redis
-docker-php-ext-enable redis
-pecl install xdebug
-docker-php-ext-enable xdebug
-
-apt-get install -y nginx
+apt-get  install urw-fonts
+apt-get  install fontconfig libXrender libXext xorg-x11-fonts-Type1 xorg-x11-fonts-75dpi freetype libpng zlib libjpeg-turbo openssl
 
 rm -rf /var/www/depend_file
-
-nginx
-
-#php-fpm
 
 tail -f /dev/null

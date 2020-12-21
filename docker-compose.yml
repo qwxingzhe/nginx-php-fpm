@@ -1,9 +1,0 @@
-version: '3'
-services:
-  nginx-php-fpm:
-    build: ./
-    container_name: nginx-php-fpm
-    ports:
-      - '8080:80'
-#    volumes:
-#      - ./default:/etc/nginx/sites-enabled/default
